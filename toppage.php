@@ -4,13 +4,32 @@
 <meta charset="utf-8">
 </head>
 <body>
-<p><a href="http://tt-458b.99sv-coco.com/toppage.php">TOPページ</a>
-<a href="http://tt-458b.99sv-coco.com/question.php">Q質問・相談をする</a></p>
+<p><a href="http://tt-458b.99sv-coco.com/toppage.php">TOPページ</a>&nbsp;
+   <a href="http://tt-458b.99sv-coco.com/question.php">質問</a>&nbsp;
+   <a href="http://tt-458b.99sv-coco.com/mypage.php">マイページへ</a>&nbsp;
+   <a href="http://tt-458b.99sv-coco.com/logout.php">ログアウトする</a>&nbsp;
+   <a href="http://tt-458b.99sv-coco.com/login.php">ログイン</a>&nbsp;
+   <a href="http://tt-458b.99sv-coco.com/registration_mail_form.php">新規登録</a></p>
+    <?php 
+    session_start();
+    if(!isset($_SESSION["name"])) {
+    ?>
+<?php	
+}
+?>
+<div>
+	<?php
+	if(isset($_SESSION["name"])) {
+		echo "ログインしました。".$_SESSION["name"]."さん";
+	?>
+	<?php	
+	}
+	?>
+</div>
 <h2>TOPページ</h2>
-<p>
 <?php
 try {
-$pdo = new PDO('mysql:host=localhost;dbname=データベース名;charset=utf8','ユーザー名','パスワード',
+$pdo = new PDO('mysql:host=localhost;dbname=tt_458b_99sv_coco_com;charset=utf8','ユーザー名','パスワード',
 array(PDO::ATTR_EMULATE_PREPARES => false));
 } catch (PDOException $e) {
  exit('データベース接続失敗。'.$e->getMessage());
